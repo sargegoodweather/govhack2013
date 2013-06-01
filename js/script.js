@@ -90,6 +90,7 @@ $(function() {
     get(brand(), model(), $appliance[0]);
     $("form")[0].reset();
     allowAdd();
+    allowOk();
     $("form input:first").focus();
   }
 
@@ -103,6 +104,7 @@ $(function() {
 
   var removeAppliance = function(element) {
     $(element).closest("li").remove();
+    allowOk();
   };
 
   var addEnergyInformation = function(element) {
@@ -125,8 +127,29 @@ $(function() {
   var get = function(brand, model, element) {
     var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20*%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20TRIM(%22Brand_Reg%22)=TRIM('" + brand + "')%20AND%20TRIM(%22Model_No%22)=TRIM('" + model + "')";
     $.ajax(url, {success: addEnergyInformation(element)});
-  }
+  };
 
+  var disableOk = function($ok) {
+    $ok.addClass("disabled");
+    $ok[0].disabled = true;
+    return false;
+  };
+
+  var enableOk = function($ok) {
+    $ok.removeClass("disabled");
+    $ok[0].disabled = false;
+    return true;
+  };
+
+  var allowOk = function() {
+    var $ok = $("#ok");
+    if ($("#appliance-list li").length > 0) {
+      return enableOk($ok);
+    }
+    return disableOk($ok);
+  };
+
+  allowOk();
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
 });

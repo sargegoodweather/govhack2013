@@ -63,11 +63,12 @@ li:hover .remove-appliance {
 
   <div class="container">
     <div class="page-header">
-      <h1>GreenStar</h1>
+      <h1>Green Screen</h1>
     </div>
     <p class="lead">
-      Click Add to start adding devices!
+    How does your household energy consumption stack-up when it is compared to your friends?
     </p>
+    Add your household appliances one at a time below.
     <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
     <div class="btn-group" style="display: none;">
       <button class="btn btn-large btn-primary">Add device</button>
@@ -88,6 +89,8 @@ li:hover .remove-appliance {
       <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
       <button type="submit" data-field="add" class="btn btn-success disabled"><i class="icon-plus icon-white"></i> Add</button>
     </form>
+    Once you have added all your appliances, hit OK! to see how you stack-up.
+    <button id="ok" class="btn btn-large btn-primary"><i class="icon-ok icon-white"></i> GO!</button>
   </div>
 </body>
 <script id="appliance-list-template" type="text/x-template">
