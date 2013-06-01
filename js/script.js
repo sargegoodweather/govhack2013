@@ -82,7 +82,7 @@ $(function() {
     $("#appliance-list").append(applianceListTemplate({
       brand: brand(),
       model: model(),
-      stars: stars(5, 0)
+      stars: stars(5.5, 10)
     }));
     $("form")[0].reset();
     allowAdd();
@@ -98,9 +98,14 @@ $(function() {
   });
 
   var stars = function(number, outOf) {
-    return _(number).times(function() {
+    var filledStars = _(Math.floor(number)).times(function() {
       return '<i class="icon-star"></i>';
     }).join("");
+    var halfStar = number - Math.floor(number) > 0.0 ? '<i class="icon-half-star"></i><i class="icon-half-star-empty"></i>' : "";
+    var emptyStars = _(Math.floor(outOf - number)).times(function() {
+      return '<i class="icon-star-empty"></i>';
+    }).join("");
+    return filledStars + halfStar + emptyStars;
   };
 
   disableSubmission($("form button[type='submit']"));
