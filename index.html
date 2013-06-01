@@ -18,6 +18,12 @@ i.icon-half-star-empty {
   background-position: -152px 0;
   width: 6px !important;
 }
+.remove-appliance {
+  display: none;
+}
+li:hover .remove-appliance {
+  display: inline-block;
+}
 </style>
 <body>
 
@@ -80,11 +86,11 @@ i.icon-half-star-empty {
     <form class="form-inline">
       <input placeholder="Brand" data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
       <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
-      <button type="submit" data-field="add" class="btn btn-primary disabled">Add</button>
+      <button type="submit" data-field="add" class="btn btn-primary disabled"><i class="icon-plus icon-white"></i> Add</button>
     </form>
   </div>
 </body>
 <script id="appliance-list-template" type="text/x-template">
-<li><a><span><%= brand %></span> <span><%= model %></span></a></li>
+<li><a><span><%= brand %></span> <span><%= model %></span><button class="remove-appliance btn btn-mini btn-danger pull-right" type="button"><i class="icon-white icon-trash"></i> Remove</button></a></li>
 </script>
 </html>

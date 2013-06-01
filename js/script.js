@@ -82,8 +82,11 @@ $(function() {
     $appliance = $(applianceListTemplate({
       brand: brand(),
       model: model(),
-    }))
+    }));
     $appliance.appendTo("#appliance-list");
+    $appliance.find(".remove-appliance").on("click", function(e) {
+      removeAppliance(this);
+    });
     get(brand(), model(), $appliance[0]);
     $("form")[0].reset();
     allowAdd();
@@ -97,6 +100,10 @@ $(function() {
     }
     return false;
   });
+
+  var removeAppliance = function(element) {
+    $(element).closest("li").remove();
+  };
 
   var addEnergyInformation = function(element) {
     return function(energyInformation) {
