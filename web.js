@@ -5,6 +5,7 @@ var html = fs.readFileSync('index.html');
 app.use(express.logger());
 
 app.get('/', function(request, response) {
+		response.setHeader("Content-Type", "text/html");
 		response.send(html);
 	});
 
