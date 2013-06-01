@@ -17,12 +17,8 @@
     <p class="lead">
       Click Add to start adding devices!
     </p>
-    <ul class="nav nav-tabs nav-stacked">
-      <li><a>My TV</a></li>
-      <li><a>Hello</a></li>
-      <li><a>Word</a></li>
-    </ul>
-    <div class="btn-group">
+    <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
+    <div class="btn-group" style="display: none;">
       <button class="btn btn-large btn-primary">Add device</button>
       <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
@@ -36,8 +32,14 @@
         <li><a>Air Conditioners</a></li>
       </ul>
     </div>
-    <input data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
-    <input data-field="model" type="text" data-provide="typeahead" autocomplete="off">
+    <form>
+      <input data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
+      <input data-field="model" type="text" data-provide="typeahead" autocomplete="off">
+      <button type="submit" data-field="add" class="btn btn-primary disabled">Add</button>
+    </form>
   </div>
 </body>
+<script id="appliance-list-template" type="text/x-template">
+<li><a><span><%= brand %></span> <span><%= model %></span><%= stars %></a></li>
+</script>
 </html>
