@@ -101,6 +101,7 @@ $(function() {
   var addEnergyInformation = function(element) {
     return function(energyInformation) {
       if (element) {
+        console.log(JSON.stringify(energyInformation));
         $(element).find("a").append(stars(parseFloat(energyInformation.result.records[0].Star), 10));
       }
     };
