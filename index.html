@@ -3,7 +3,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/brandmap.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -33,6 +36,8 @@
         <li><a>Air Conditioners</a></li>
       </ul>
     </div>
+    <input data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
+    <input data-field="model" type="text" data-provide="typeahead" autocomplete="off">
   </div>
 </body>
 </html>
