@@ -5,6 +5,9 @@ var html = fs.readFileSync('index.html');
 var channel_html = '<script src="//connect.facebook.net/en_US/all.js"></script>';
 app.use(express.logger());
 
+app.use(express.static(__dirname + '/js'));
+app.use(express.static(__dirname + '/img'));
+
 app.get('/', function(request, response) {
 		response.setHeader("Content-Type", "text/html");
 		if (request.params.name == 'channel.html'){ response.send(channel_html);}
