@@ -2,7 +2,7 @@
   "name": "GreenScreen",
   "version": "0.0.1",
   "dependencies": {
-    "backbone" "1.0.0"
+    "backbone": "1.0.0"
   },
   "engines": {
     "node": "0.10.x"
