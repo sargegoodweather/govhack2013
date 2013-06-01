@@ -1,6 +1,13 @@
 $(function() {
 
-  applianceListTemplate = _.template($("#appliance-list-template").html());
+  var modelmap = {};
+  _.each(brandmap, function(models, brand) {
+    _.each(models, function(model) {
+      modelmap[model] = brand;
+    });
+  });
+
+  var applianceListTemplate = _.template($("#appliance-list-template").html());
 
   var disableSubmission = function($sub) {
     $sub.addClass("disabled");
@@ -24,8 +31,22 @@ $(function() {
     return disableSubmission($sub);
   };
 
+  var fillInBrand = function(item) {
+    if (_.isEmpty(brand())) {
+      if (!_.isEmpty(item) && _.has(modelmap, item)) {
+        brand(modelmap[item]);
+      } else {
+        var $brand = $("form input[data-field='brand']");
+        $brand.focus();
+      }
+    }
+  };
+
   var updater = function(item) {
     this.$element.nextAll("input:first").focus();
+    if (this.$element[0] === $("form input[data-field='model']")[0]) {
+      fillInBrand(item);
+    }
     allowAdd();
     return item;
   };
@@ -35,16 +56,23 @@ $(function() {
   };
 
   var modelSource = function(query, process) {
-    var brand = $("input[data-field='brand']");
-    return _.has(brandmap, brand.val()) ? brandmap[brand.val()] : _.values(brandmap);
+    return _.has(brandmap, brand()) ? brandmap[brand()] : _.flatten(_.values(brandmap));
   };
 
-  var brand = function() {
-    return $("input[data-field='brand']").val();
+  var brand = function(val) {
+    var $brand = $("input[data-field='brand']");
+    if (val) {
+      $brand.val(val);
+    }
+    return $brand.val();
   };
 
-  var model = function() {
-    return $("input[data-field='model']").val();
+  var model = function(val) {
+    var $model = $("input[data-field='model']");
+    if (val) {
+      $model.val(val);
+    }
+    return $model.val();
   };
 
   $("input[data-field='brand']").typeahead({source: brandSource, updater: updater});
@@ -76,4 +104,5 @@ $(function() {
   };
 
   disableSubmission($("form button[type='submit']"));
+  $("form input:first").focus();
 });
