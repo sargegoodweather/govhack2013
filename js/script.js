@@ -79,11 +79,13 @@ $(function() {
   $("input[data-field='model']").typeahead({source: modelSource, updater: updater});
 
   var addAppliance = function(e) {
-    $("#appliance-list").append(applianceListTemplate({
+    $appliance = $(applianceListTemplate({
       brand: brand(),
       model: model(),
       stars: stars(5.5, 10)
-    }));
+    }))
+    $appliance.appendTo("#appliance-list");
+    get(brand(), model(), $appliance[0]);
     $("form")[0].reset();
     allowAdd();
     $("form input:first").focus();
@@ -97,6 +99,14 @@ $(function() {
     return false;
   });
 
+  var addEnergyInformation = function(element) {
+    return function(energyInformation) {
+      if (element) {
+        $(element).find("a").append(JSON.stringify(energyInformation.result.records[0]));
+      }
+    };
+  };
+
   var stars = function(number, outOf) {
     var filledStars = _(Math.floor(number)).times(function() {
       return '<i class="icon-star"></i>';
@@ -107,6 +117,12 @@ $(function() {
     }).join("");
     return filledStars + halfStar + emptyStars;
   };
+
+  var get = function(brand, model, element) {
+    //var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20DISTINCT%20*%20FROM%20%2793a615e5-935e-4713-a4b0-379e3f6dedc9%27%20WHERE%20TRIM(%27Brand_Reg%27)=TRIM(%27" + brand + "%27)%20AND%20TRIM(%27Model_No%27)=TRIM(%27" + model + "%27)";
+    var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20%22Brand_Reg%22,%22Model_No%22,%20ROUND((%22CEC%22*3)/52,0)%20AS%20%22no_of_trees%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20TRIM(%22Brand_Reg%22)=TRIM('Panasonic')%20AND%20TRIM(%22Model_No%22)=TRIM('TH-P50ST50A')";
+    $.ajax(url, {success: addEnergyInformation(element)});
+  }
 
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
