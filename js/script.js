@@ -307,7 +307,7 @@ $(function() {
         setName();
         showShare();
       }
-    });
+    }, {scope: 'publish_actions'});
   };
 
   $("#connect").click(connect);
