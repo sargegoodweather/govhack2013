@@ -211,8 +211,8 @@ $(function() {
 			  cec = cec + (1 * $(el).data("Star").CEC);
 		  });
 	  return "You use " + cec + " kWh/year <br/>" +
-	      "You need " + (cec*3.0/52)+ " trees per year to offset the carbon produced, " +
-	  (cec*10/(24*365.25)) + " hours of cycling per day to produce the power, and you could power " + (cec/(0.04*2100)) + " 40W light bulbs for 6 hours a day each day.";
+	  "You need " + Math.round(10*(cec*3.0/52))/10 + " trees per year to offset the carbon produced, " +
+	  Math.round(10*cec*10/365.25)/10 + " hours of cycling per day to produce the power, and you could power " + Math.round(10*cec/(0.04*2100))/10 + " 40W light bulbs for 6 hours a day each day.";
   }
 
   $("#share").click(function() {
