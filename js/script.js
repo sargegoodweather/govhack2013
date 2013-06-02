@@ -137,7 +137,7 @@ $(function() {
     var emptyStars = _(Math.floor(outOf - number)).times(function() {
       return '<i class="icon-star-empty"></i>';
     }).join("");
-    return filledStars + halfStar + emptyStars;
+    return '<span class="stars">' + filledStars + halfStar + emptyStars + '</span>';
   };
 
   var get = function(brand, model, element) {

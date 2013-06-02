@@ -17,6 +17,9 @@
 .container {
   width: 600px !important;
 }
+li:hover .stars {
+  display: none;
+}
 i.icon-half-star {
   background-position: -120px 0;
   width: 8px !important;
@@ -31,6 +34,9 @@ i.icon-half-star-empty {
 li:hover .remove-appliance {
   display: inline-block;
 }
+li .stars {
+  float: right;
+}
 </style>
 <body>
   <div id="fb-root"></div>
@@ -42,7 +48,6 @@ li:hover .remove-appliance {
       </p>
     </div>
     <div id="enter-appliances">
-      Add your household appliances one at a time below.
       <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
       <div class="btn-group" style="display: none;">
         <button class="btn btn-large btn-primary">Add device</button>
@@ -59,10 +64,14 @@ li:hover .remove-appliance {
         </ul>
       </div>
       <form class="form-inline">
-        <input placeholder="Brand" data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
-        <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
-        <button type="submit" data-field="add" class="btn btn-success disabled"><i class="icon-plus icon-white"></i> Add</button>
+        <div class="controls controls-row">
+          <input placeholder="Brand" data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
+          <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
+          <button type="submit" data-field="add" class="btn btn-success disabled pull-right"><i class="icon-plus icon-white"></i> Add</button>
+          <span class="help-block">Add your household appliances one at a time below.</span>
+        </div>
       </form>
+      <hr>
       Once you have added all your appliances, hit OK! to see how you stack-up.<br>
       <button id="ok" class="btn btn-large btn-primary"><i class="icon-ok icon-white"></i> GO!</button>
     </div>
