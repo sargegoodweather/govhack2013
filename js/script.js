@@ -177,6 +177,7 @@ $(function() {
 	  var star = averageStar("#appliance-list");
     var avg = Math.round(star * 10);
     message = makeMessage(avg);
+    comparison = makeComparison($("appliance-list").find("li"));
     $("#summary h1").text("You scored " + avg + "%");
     $("#summary p").text(message);
     $("#enter-appliances").hide();
@@ -202,6 +203,14 @@ $(function() {
     });
     return total / appliances.length;
   };
+
+  var makeComparison = function(list) {
+	  var cec = 0;
+	  list.each(function(i,el) {
+			  cec = cec + $(el).data("Star").CEC;
+		  });
+	  return "You use " + cec + " kWh/year";
+  }
 
   $("#share").click(function() {
     var ret = makePostInformation();
