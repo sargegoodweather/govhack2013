@@ -104,6 +104,7 @@ $(function() {
     });
     get(brand(), model(), $appliance[0]);
     $("form")[0].reset();
+    $("#appliance-list").show()
     allowAdd();
     allowOk();
     $("form input:first").focus();
@@ -230,6 +231,7 @@ $(function() {
   });
 
   var resetForm = function() {
+    $("#appliance-list").hide();
     $("#appliance-list li").remove();
     $("form")[0].reset();
     allowAdd()
@@ -276,6 +278,7 @@ $(function() {
   allowOk();
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
+  $("#appliance-list").hide();
 
   var setName = function() {
     FB.api('/me', function(response) {
