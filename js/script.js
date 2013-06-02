@@ -218,7 +218,9 @@ $(function() {
   }
 
   $("#share").click(function() {
-    var ret = makePostInformation();
+		  var star = averageStar("#appliance-list");
+    var avg = Math.round(star * 10);
+    var ret = makePostInformation(avg);
 
     FB.api('/me/feed', 'post', {
       link: 'http://stormy-beyond-1782.herokuapp.com/',
