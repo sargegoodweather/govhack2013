@@ -217,8 +217,8 @@ $(function() {
 	  Math.round(10*cec*10/365.25)/10 + " hours of cycling per day to produce the power, and you could power " + Math.round(10*cec/(0.04*2100))/10 + " 40W light bulbs for 6 hours a day each day.";
   }
 
-  $("#share").click(function() {
-		  var star = averageStar("#appliance-list");
+  var share = function() {
+		var star = averageStar("#appliance-list");
     var avg = Math.round(star * 10);
     var ret = makePostInformation(avg);
 
@@ -236,12 +236,17 @@ $(function() {
     $("#share").unbind("click");
   });
 
+  $("#share").click(share);
+
   var resetForm = function() {
     $("#appliance-list").hide();
     $("#appliance-list li").remove();
     $("form")[0].reset();
     allowAdd()
     allowOk();
+    $("#share")[0].disable = false;
+    $("#share").html('<i class="icon-white icon-share"></i> Share to Facebook').removeClass("disabled");
+    $("#share").click(share);
   }
 
   $("#start-over").click(function() {
