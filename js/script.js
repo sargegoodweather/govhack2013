@@ -216,8 +216,8 @@ $(function() {
     var ret = makePostInformation();
 
     FB.api('/me/feed', 'post', {
-      link: 'stormy-beyond-1782.herokuapp.com/',
-      picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
+      link: 'http://stormy-beyond-1782.herokuapp.com/',
+      picture: 'http://stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
       name: 'How Green is your Screen?',
       caption: ret.capt,
       description: ret.desc
