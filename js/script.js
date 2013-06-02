@@ -1,8 +1,7 @@
 var username = 'UNSET';
 
-var makePostInformation = function() {
+var makePostInformation = function(percent) {
 	var ret = {};
-	var percent = 10; // TODO
 	ret.capt = username + ' took the Green Screen challenge and got ' + percent + '%!';
 	
 	if (percent < 50) {
@@ -167,6 +166,9 @@ $(function() {
   };
 
   var showSummary = function() {
+    var avg = averageStar("#appliance-list");
+    var text = makePostInformation(avg * 10);
+    $("#summary span").text(text.desc);
     $("#enter-appliances").hide();
     $("#summary").show();
   };
@@ -182,9 +184,17 @@ $(function() {
     }
   });
 
+  var averageStar = function(list) {
+    var appliances = $(list).find("li");
+    var total = 0;
+    appliances.each(function(i, el) {
+      total = total + $(el).data("Star");
+    });
+    return total / appliances.length;
+  };
 
-  $("#share").click(function(){
-	var ret = makePostInformation()
+  $("#share").click(function() {
+    var ret = makePostInformation();
     FB.ui({
       method: 'feed',
       link: 'stormy-beyond-1782.herokuapp.com/',
@@ -231,6 +241,7 @@ $(function() {
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
 
+});
   // Facebook sample login code
   var doLogin = function() {
 	  FB.login(function(response) {
@@ -270,4 +281,3 @@ $(function() {
   // 			  alert('Post ID: ' + response.id);
   // 		  }
   // 	  });
-});
