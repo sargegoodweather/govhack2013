@@ -207,7 +207,7 @@ $(function() {
   var makeComparison = function(list) {
 	  var cec = 0;
 	  list.each(function(i,el) {
-			  console.log($(el).data("Star");
+			  console.log($(el).data("Star"));
 			  cec = cec + (1 * $(el).data("Star").CEC);
 		  });
 	  return "You use " + cec + " kWh/year <br/>" +
