@@ -1,22 +1,9 @@
-govhack2013
-===========
+How much damage is your television doing?
 
-Ideas
------
-- Mash up Tourism data with other data to help plan a tourist's trip to Canberra on the go.
-- Use Energy consumption for different appliance data, work out how much energy your househould consumes, suggest better appliances, and where you can go to buy them.  Calculate how much you could save.
-- Mash up Tourism data with development of government buildings and Trove, create a Canberra history experience.  Inspired by Vintage Canberra.  Use Gazetter to work out which year where you are started getting developed.  Mildenhal, old maps, main data will be tourist points of interest but we will try and bring in a few things on top of this.  (I get the feeling this will be easy)
+Intergrating synergistic dataflows to empower consumer decision making and draw social attention to being green.
 
+Using live data from http://opendata.linkdigital.com.au/dataset/appliance-energy-ratings as well as static information from global research, we inform consumers about their television's behaviour and the hidden costs they incur, while suggesting better alternatives where possible.
 
+The Australian Government has an energy rating tool for televisions, but, face it: how often have you looked at it? Have you ever come across it? It's tucked away on the [web](http://reg.energyrating.gov.au/comparator/product_types/32/search/). Our goal is to thrust the problem of energy efficiency of appliances in the limelight, by allowing users to enter information about their television(s) and have their energy efficiency rated in the public domain: the user is given a score which is posted to Facebook for their friends to see.
 
-
-Video ideas
------------
-- <blink>DRAMATIC REENACTMENT</blink>
-- while watching TV; "If only I knew how much power this was using..."
-- "I know!" *Checks model number on back of TV* "Aha"
-- Use website, enter (inefficient?) model number
-- Bad results come back, "Oh I hope nobody ever finds out"
-- Cut to friend elsewhere
-- "Hah, I can do better than that"
-- World is now a better place.
+Take the challenge today!
