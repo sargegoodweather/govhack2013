@@ -235,7 +235,19 @@ $(function() {
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
     });
-  };
+   FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      setName();
+      hideConnect();
+    } else if (response.status === 'not_authorized') {
+      showConnect();
+    } else {
+      showConnect();
+    }
+  });
+ };
   // Load the SDK Asynchronously
   var loadFB = function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -277,18 +289,6 @@ $(function() {
     $("#share").hide();
   };
 
-  FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      var uid = response.authResponse.userID;
-      var accessToken = response.authResponse.accessToken;
-      setName();
-      hideConnect();
-    } else if (response.status === 'not_authorized') {
-      showConnect();
-    } else {
-      showConnect();
-    }
-  });
 
   var connect = function() {
 	  FB.login(function(response) {
