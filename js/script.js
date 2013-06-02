@@ -1,5 +1,7 @@
 $(function() {
 
+  var username;
+
   var modelmap = {};
   _.each(brandmap, function(models, brand) {
     _.each(models, function(model) {
@@ -166,14 +168,29 @@ $(function() {
     }
   });
 
-  $("#share").click(function() {
+
+  var makePostInformation() {
+	  var ret = {};
+	  var percent = "50"; // TODO
+	  ret.capt = username + ' took the Green Screen challenge and got ' + percent + '%!';
+	  
+	  if (percent < 50) {
+		  ret.desc = 'What a ' + randomInsult() + '! Try harder next time!';
+	  } else {
+		  ret.desc = randomCompliment() + ', ' + username;
+	  }
+	  return ret;
+  }
+
+  $("#share").click(function()){
+	var ret = makePostInformation()
     FB.ui({
       method: 'feed',
       link: 'stormy-beyond-1782.herokuapp.com/',
       picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
       name: 'How Green is your Screen?',
-      caption: 'Joe Blogs got 5 stars!',
-      description: 'Joe Blogs is a good person for having energy efficient TVs. Are you?.'
+      caption: ret.capt,
+      description: ret.desc
     });
   });
 
@@ -199,4 +216,44 @@ $(function() {
   allowOk();
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
+
+  // Facebook sample login code
+  var doLogin() {
+	  FB.login(function(response) {
+			  if (response.authResponse) {
+				  FB.api('/me', function(response) {
+						  username = response.name;
+						  // Cache response.name somewhere for personalisation purposes
+					  });
+			  } else {
+				  // User cancelled the login
+			  }
+		  }); // , {scope: 'publish_actions'} publish_actions for posting to the feed without user intervention
+  }
+
+  // FB.getLoginStatus(function(response) {
+  // 		  if (response.status === 'connected') {
+  // 			  // the user is logged in and has authenticated your
+  // 			  // app, and response.authResponse supplies
+  // 			  // the user's ID, a valid access token, a signed
+  // 			  // request, and the time the access token 
+  // 			  // and signed request each expire
+  // 			  var uid = response.authResponse.userID;
+  // 			  var accessToken = response.authResponse.accessToken;
+  // 		  } else if (response.status === 'not_authorized') {
+  // 			  // the user is logged in to Facebook, 
+  // 			  // but has not authenticated your app
+  // 		  } else {
+  // 			  // the user isn't logged in to Facebook.
+  // 		  }
+  // 	  });
+
+
+  // FB.api('/me/feed', 'post', { message: body }, function(response) {
+  // 		  if (!response || response.error) {
+  // 			  alert('Error occured');
+  // 		  } else {
+  // 			  alert('Post ID: ' + response.id);
+  // 		  }
+  // 	  });
 });
