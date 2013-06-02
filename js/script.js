@@ -176,9 +176,9 @@ $(function() {
   var showSummary = function() {
 	  var star = averageStar("#appliance-list");
     var avg = Math.round(star * 10);
-	print "avg!!";
-	print avg;
-	  print star;
+	  print("avg!!");
+	  print(avg);
+	  print(star);
     message = makeMessage(avg);
     $("#summary h1").text("You scored " + avg + "%");
     $("#summary p").text(message);
