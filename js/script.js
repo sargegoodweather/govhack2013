@@ -205,7 +205,7 @@ $(function() {
 			console.log($(el));
 			console.log($(el).data("Star"));
 			console.log('\n');
-      total = total + $(el).data("Star");
+      total = total + $(el).data("Star").Star;
     });
     return total / appliances.length;
   };
