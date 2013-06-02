@@ -180,7 +180,8 @@ $(function() {
     message = makeMessage(avg);
     comparison = makeComparison($("#appliance-list").find("li"));
     $("#summary h1").text("You scored " + avg + "%");
-    $("#summary p").text(message + comparison);
+    $("#summary p").text(message)
+    $("#summary p").after(comparison);
     $("#enter-appliances").hide();
     $("#summary").show();
   };
@@ -211,7 +212,7 @@ $(function() {
 			  console.log($(el).data("Star"));
 			  cec = cec + (1 * $(el).data("Star").CEC);
 		  });
-	  return "You use " + cec + " kWh/year <br/>" +
+	  return "You use " + cec + " kWh/year. "  +
 	  "You need " + Math.round(10*(cec*3.0/52))/10 + " trees per year to offset the carbon produced, " +
 	  Math.round(10*cec*10/365.25)/10 + " hours of cycling per day to produce the power, and you could power " + Math.round(10*cec/(0.04*2100))/10 + " 40W light bulbs for 6 hours a day each day.";
   }
