@@ -141,7 +141,7 @@ $(function() {
   };
 
   var get = function(brand, model, element) {
-    var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20*%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20TRIM(%22Brand_Reg%22)=TRIM('" + brand + "')%20AND%20TRIM(%22Model_No%22)=TRIM('" + model + "')";
+	  var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20*%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20TRIM(%22Brand_Reg%22)=TRIM('" + encodeURIComponent(brand) + "')%20AND%20TRIM(%22Model_No%22)=TRIM('" + encodeURIComponent(model) + "')";
     $.ajax(url, {success: addEnergyInformation(element)});
   };
 
@@ -166,7 +166,7 @@ $(function() {
   };
 
   var getRecommendationsFor = function(brand, model) {
-    var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20DISTINCT%20q.%22Brand_Reg%22,q.%22Model_No%22,q.%22Star%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20q%20WHERE%20q.%22CEC%22%20IN%20(SELECT%20t.%22min_cec%22%20FROM%20(SELECT%20DISTINCT%20%22Star%22,MIN(%22CEC%22)%20AS%20%22min_cec%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Star%22%20%3E%20COALESCE((SELECT%20MIN(%22Star%22)%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Brand_Reg%22='" + brand + "'%20AND%20%22Model_No%22='" + model + "'),0)%20GROUP%20BY%20%22Star%22)%20t)";
+	  var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20DISTINCT%20q.%22Brand_Reg%22,q.%22Model_No%22,q.%22Star%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20q%20WHERE%20q.%22CEC%22%20IN%20(SELECT%20t.%22min_cec%22%20FROM%20(SELECT%20DISTINCT%20%22Star%22,MIN(%22CEC%22)%20AS%20%22min_cec%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Star%22%20%3E%20COALESCE((SELECT%20MIN(%22Star%22)%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Brand_Reg%22='" + encodeURIComponent(brand) + "'%20AND%20%22Model_No%22='" + encodeURIComponent(model) + "'),0)%20GROUP%20BY%20%22Star%22)%20t)";
     $.get(url, {
       success: function(data) {
       }
