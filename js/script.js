@@ -199,7 +199,7 @@ $(function() {
     var appliances = $(list).find("li");
     var total = 0;
     appliances.each(function(i, el) {
-      total = total + $(el).data("Star").Star;
+			total = total + (1*$(el).data("Star").Star);
     });
     return total / appliances.length;
   };
@@ -207,7 +207,7 @@ $(function() {
   var makeComparison = function(list) {
 	  var cec = 0;
 	  list.each(function(i,el) {
-			  cec = cec + $(el).data("Star").CEC;
+			  cec = cec + (1 * $(el).data("Star").CEC);
 		  });
 	  return "You use " + cec + " kWh/year <br/>" +
 	      "You need " + (cec*3.0/52)+ " trees per year to offset the carbon produced, " +
