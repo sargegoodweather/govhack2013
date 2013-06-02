@@ -8,8 +8,8 @@ var makeMessage = function(percent) {
 
 var makePostInformation = function(percent) {
 	return {
-    capt: username + ' took the Green Screen challenge and got ' + percent + '%!',
-	desc: message + '\nCan you beat their score?'
+    capt: username + ' took the Green Screen challenge!',
+	desc: username + ' got ' + percent + '%!\n' + message + '\nCan you beat their score?'
   };
 };
 
