@@ -181,7 +181,7 @@ $(function() {
     comparison = makeComparison($("#appliance-list").find("li"));
     $("#summary h1").text("You scored " + avg + "%");
     $("#summary p").text(message)
-    $("#summary p").after(comparison);
+    $("#summary #desc").html(comparison);
     $("#enter-appliances").hide();
     $("#summary").show();
   };
