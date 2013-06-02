@@ -216,14 +216,15 @@ $(function() {
 
   $("#share").click(function() {
     var ret = makePostInformation();
-	console.log(ret);
-    FB.ui({
-      method: 'feed',
+
+    FB.api('/me/feed', 'post', {
       link: 'stormy-beyond-1782.herokuapp.com/',
       picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
       name: 'How Green is your Screen?',
       caption: ret.capt,
-	  description: ret.desc
+      description: ret.desc
+    }, function(response) {
+      console.log(response);
     });
   });
 
@@ -306,6 +307,7 @@ $(function() {
 	  FB.login(function(response) {
       if (response.authResponse) {
         setName();
+        showShare();
       }
     });
   };
@@ -313,12 +315,3 @@ $(function() {
   $("#connect").click(connect);
 });
 
-
-
-  // FB.api('/me/feed', 'post', { message: body }, function(response) {
-  // 		  if (!response || response.error) {
-  // 			  alert('Error occured');
-  // 		  } else {
-  // 			  alert('Post ID: ' + response.id);
-  // 		  }
-  // 	  });
