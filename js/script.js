@@ -1,7 +1,21 @@
+var username = 'UNSET';
+
+var makePostInformation = function() {
+	var ret = {};
+	var percent = 10; // TODO
+	ret.capt = username + ' took the Green Screen challenge and got ' + percent + '%!';
+	
+	if (percent < 50) {
+		ret.desc =  randomInsult(username);
+	} else {
+		ret.desc = randomCompliment(username);
+	}
+	ret.desc = ret.desc + '\nCan you beat their score?';
+	return ret;
+};
+
+
 $(function() {
-
-  var username;
-
   var modelmap = {};
   _.each(brandmap, function(models, brand) {
     _.each(models, function(model) {
@@ -169,20 +183,7 @@ $(function() {
   });
 
 
-  var makePostInformation() {
-	  var ret = {};
-	  var percent = "50"; // TODO
-	  ret.capt = username + ' took the Green Screen challenge and got ' + percent + '%!';
-	  
-	  if (percent < 50) {
-		  ret.desc = 'What a ' + randomInsult() + '! Try harder next time!';
-	  } else {
-		  ret.desc = randomCompliment() + ', ' + username;
-	  }
-	  return ret;
-  }
-
-  $("#share").click(function()){
+  $("#share").click(function(){
 	var ret = makePostInformation()
     FB.ui({
       method: 'feed',
@@ -231,7 +232,7 @@ $(function() {
   $("form input:first").focus();
 
   // Facebook sample login code
-  var doLogin() {
+  var doLogin = function() {
 	  FB.login(function(response) {
 			  if (response.authResponse) {
 				  FB.api('/me', function(response) {
@@ -242,7 +243,7 @@ $(function() {
 				  // User cancelled the login
 			  }
 		  }); // , {scope: 'publish_actions'} publish_actions for posting to the feed without user intervention
-  }
+  };
 
   // FB.getLoginStatus(function(response) {
   // 		  if (response.status === 'connected') {
