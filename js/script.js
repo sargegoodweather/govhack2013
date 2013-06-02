@@ -9,7 +9,7 @@ var makeMessage = function(percent) {
 var makePostInformation = function(percent) {
 	return {
     capt: username + ' took the Green Screen challenge and got ' + percent + '%!',
-	  desc: message + '\nCan you beat their score?'
+	desc: message + '\nCan you beat their score?'
   };
 };
 
@@ -211,7 +211,7 @@ $(function() {
       picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
       name: 'How Green is your Screen?',
       caption: ret.capt,
-      description: ret.desc
+	  description: ret.desc
     });
   });
 
