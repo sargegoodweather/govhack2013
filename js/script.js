@@ -234,7 +234,7 @@ $(function() {
     $("#share")[0].disable = true;
     $("#share").html('<i class="icon-white icon-ok"></i> Shared!').addClass("disabled");
     $("#share").unbind("click");
-  });
+  };
 
   $("#share").click(share);
 
