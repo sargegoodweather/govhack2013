@@ -30,41 +30,6 @@ li:hover .remove-appliance {
 }
 </style>
 <body>
-
-  <div id="fb-root"></div>
-  <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '258550604284955', // App ID
-            channelUrl : '//stormy-beyond-1782.herokuapp.com/channel.html', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
-          });
-        };
-        // Load the SDK Asynchronously
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-
-		function postToFeed() {
-          FB.ui({ 
-            method: 'feed',
-		    link: 'stormy-beyond-1782.herokuapp.com/',
-            picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
-            name: 'How Green is your Screen?',
-            caption: 'Joe Blogs got 5 stars!',
-            description: 'Joe Blogs is a good person for having energy efficient TVs. Are you?.'
-          });
-		}
-      </script>
-
-  <p><a onclick='postToFeed(); return false;'>Post to Feed</a></p>
-
   <div class="container">
     <div class="page-header">
       <h1>Green Screen</h1>
@@ -72,30 +37,36 @@ li:hover .remove-appliance {
     <p class="lead">
     How does your household energy consumption stack-up when it is compared to your friends?
     </p>
-    Add your household appliances one at a time below.
-    <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
-    <div class="btn-group" style="display: none;">
-      <button class="btn btn-large btn-primary">Add device</button>
-      <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a>Television</a></li>
-        <li><a>Refrigerator/Freezer</a></li>
-        <li><a>Clothes Washers</a></li>
-        <li><a>Dishwashers</a></li>
-        <li><a>Clothes Dryers</a></li>
-        <li><a>Air Conditioners</a></li>
-      </ul>
+    <div id="enter-appliances">
+      Add your household appliances one at a time below.
+      <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
+      <div class="btn-group" style="display: none;">
+        <button class="btn btn-large btn-primary">Add device</button>
+        <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a>Television</a></li>
+          <li><a>Refrigerator/Freezer</a></li>
+          <li><a>Clothes Washers</a></li>
+          <li><a>Dishwashers</a></li>
+          <li><a>Clothes Dryers</a></li>
+          <li><a>Air Conditioners</a></li>
+        </ul>
+      </div>
+      <form class="form-inline">
+        <input placeholder="Brand" data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
+        <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
+        <button type="submit" data-field="add" class="btn btn-success disabled"><i class="icon-plus icon-white"></i> Add</button>
+      </form>
+      Once you have added all your appliances, hit OK! to see how you stack-up.<br>
+      <button id="ok" class="btn btn-large btn-primary"><i class="icon-ok icon-white"></i> GO!</button>
     </div>
-    <form class="form-inline">
-      <input placeholder="Brand" data-field="brand" type="text" data-provide="typeahead" autocomplete="off">
-      <input placeholder="Model Number" data-field="model" type="text" data-provide="typeahead" autocomplete="off">
-      <button type="submit" data-field="add" class="btn btn-success disabled"><i class="icon-plus icon-white"></i> Add</button>
-    </form>
-    Once you have added all your appliances, hit OK! to see how you stack-up.<br>
-    <button id="ok" class="btn btn-large btn-primary"><i class="icon-ok icon-white"></i> GO!</button>
+    <div id="summary">
+      <button id="share" class="btn btn-primary btn-large">Share on Facebook</button>
+    </div>
   </div>
+
 </body>
 <script id="appliance-list-template" type="text/x-template">
 <li><a><span><%= brand %></span> <span><%= model %></span><button class="remove-appliance btn btn-mini btn-danger pull-right" type="button"><i class="icon-white icon-trash"></i> Remove</button></a></li>
