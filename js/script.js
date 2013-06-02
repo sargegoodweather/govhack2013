@@ -124,7 +124,8 @@ $(function() {
 
   var addEnergyInformation = function(element) {
     return function(energyInformation) {
-      $(element).data(energyInformation.result.records[0]);
+		console.log("Storing " +  energyInformation.result.records[0] + " AT " + element)
+		$(element).data("Star",energyInformation.result.records[0]);
       $(element).find("a").append(stars(parseFloat(energyInformation.result.records[0].Star), 10));
     };
   };
