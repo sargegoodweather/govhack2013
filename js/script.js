@@ -211,8 +211,8 @@ $(function() {
       link: 'stormy-beyond-1782.herokuapp.com/',
       picture: 'stormy-beyond-1782.herokuapp.com/img/greenscreen.png',
       name: 'How Green is your Screen?',
-      caption: ret.capt,
-      description: ret.desc
+				caption: 'test caption', //ret.capt,
+				description: 'test description'//ret.desc
     });
   });
 
