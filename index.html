@@ -14,6 +14,9 @@
   <script src="js/bootstrap.min.js"></script>
 </head>
 <style>
+.container {
+  width: 600px !important;
+}
 i.icon-half-star {
   background-position: -120px 0;
   width: 8px !important;
@@ -34,10 +37,10 @@ li:hover .remove-appliance {
   <div class="container">
     <div class="page-header">
       <h1>Green Screen</h1>
+      <p class="lead">
+      How does your household energy consumption stack-up when it is compared to your friends?
+      </p>
     </div>
-    <p class="lead">
-    How does your household energy consumption stack-up when it is compared to your friends?
-    </p>
     <div id="enter-appliances">
       Add your household appliances one at a time below.
       <ul id="appliance-list" class="nav nav-tabs nav-stacked"></ul>
@@ -64,9 +67,15 @@ li:hover .remove-appliance {
       <button id="ok" class="btn btn-large btn-primary"><i class="icon-ok icon-white"></i> GO!</button>
     </div>
     <div id="summary">
-      <span></span>
-      <button id="start-over" class="btn btn-large"><i class="icon-repeat"></i> Start Over</button>
-      <button id="share" class="btn btn-primary btn-large"><i class="icon-white icon-share"></i> Share on Facebook</button>
+      <div class="hero-unit">
+        <h1>You scored</h1>
+        <p class="lead"></p>
+        <hr>
+        <div>
+          <button id="start-over" class="btn btn-large"><i class="icon-repeat"></i> Start Over</button>
+          <button id="share" class="pull-right btn btn-primary btn-large"><i class="icon-white icon-share"></i> Share on Facebook</button>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 var randomCompliment = function(name) {
 	var randomNumber = Math.floor(Math.random()*compliments.length);
-	return compliments[randomNumber] + ", " + name;
+	return compliments[randomNumber] + (name ? ", " + name : "");
 };
 
 var randomInsult = function() {

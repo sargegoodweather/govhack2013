@@ -1,16 +1,16 @@
-var username = 'UNSET';
+var username;
+
+var message;
+
+var makeMessage = function(percent) {
+  return percent < 50 ? randomInsult(username) : randomCompliment(username);
+};
 
 var makePostInformation = function(percent) {
-	var ret = {};
-	ret.capt = username + ' took the Green Screen challenge and got ' + percent + '%!';
-	
-	if (percent < 50) {
-		ret.desc =  randomInsult(username);
-	} else {
-		ret.desc = randomCompliment(username);
-	}
-	ret.desc = ret.desc + '\nCan you beat their score?';
-	return ret;
+	return {
+    capt: username + ' took the Green Screen challenge and got ' + percent + '%!',
+	  desc: message + '\nCan you beat their score?'
+  };
 };
 
 
@@ -165,10 +165,19 @@ $(function() {
     return disableOk($ok);
   };
 
+  var getRecommendationsFor = function(brand, model) {
+    var url = "http://opendata.linkdigital.com.au/api/action/datastore_search_sql?sql=SELECT%20DISTINCT%20q.%22Brand_Reg%22,q.%22Model_No%22,q.%22Star%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20q%20WHERE%20q.%22CEC%22%20IN%20(SELECT%20t.%22min_cec%22%20FROM%20(SELECT%20DISTINCT%20%22Star%22,MIN(%22CEC%22)%20AS%20%22min_cec%22%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Star%22%20%3E%20COALESCE((SELECT%20MIN(%22Star%22)%20FROM%20%2293a615e5-935e-4713-a4b0-379e3f6dedc9%22%20WHERE%20%22Brand_Reg%22='" + brand + "'%20AND%20%22Model_No%22='" + model + "'),0)%20GROUP%20BY%20%22Star%22)%20t)";
+    $.get(url, {
+      success: function(data) {
+      }
+    });
+  }
+
   var showSummary = function() {
-    var avg = averageStar("#appliance-list");
-    var text = makePostInformation(avg * 10);
-    $("#summary span").text(text.desc);
+    var avg = Math.round(averageStar("#appliance-list") * 10);
+    message = makeMessage(avg);
+    $("#summary h1").text("You scored " + avg + "%");
+    $("#summary p").text(message);
     $("#enter-appliances").hide();
     $("#summary").show();
   };
