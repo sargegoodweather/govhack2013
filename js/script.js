@@ -177,7 +177,7 @@ $(function() {
 	  var star = averageStar("#appliance-list");
     var avg = Math.round(star * 10);
     message = makeMessage(avg);
-    comparison = makeComparison($("appliance-list").find("li"));
+    comparison = makeComparison($("#appliance-list").find("li"));
     $("#summary h1").text("You scored " + avg + "%");
     $("#summary p").text(message + comparison);
     $("#enter-appliances").hide();
