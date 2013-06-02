@@ -124,7 +124,6 @@ $(function() {
 
   var addEnergyInformation = function(element) {
     return function(energyInformation) {
-		console.log("Storing " +  energyInformation.result.records[0] + " AT " + element)
 		$(element).data("Star",energyInformation.result.records[0]);
       $(element).find("a").append(stars(parseFloat(energyInformation.result.records[0].Star), 10));
     };
@@ -177,9 +176,6 @@ $(function() {
   var showSummary = function() {
 	  var star = averageStar("#appliance-list");
     var avg = Math.round(star * 10);
-	  console.log("avg!!");
-	  console.log(avg);
-	  console.log(star);
     message = makeMessage(avg);
     $("#summary h1").text("You scored " + avg + "%");
     $("#summary p").text(message);
@@ -202,9 +198,6 @@ $(function() {
     var appliances = $(list).find("li");
     var total = 0;
     appliances.each(function(i, el) {
-			console.log($(el));
-			console.log($(el).data("Star"));
-			console.log('\n');
       total = total + $(el).data("Star").Star;
     });
     return total / appliances.length;
