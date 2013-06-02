@@ -177,6 +177,18 @@ $(function() {
     });
   });
 
+  var resetForm = function() {
+    $("#appliance-list li").remove();
+    $("form")[0].reset();
+    allowAdd()
+    allowOk();
+  }
+
+  $("#start-over").click(function() {
+    resetForm();
+    showEnterAppliances();
+  });
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '258550604284955', // App ID
@@ -196,6 +208,7 @@ $(function() {
   };
   loadFB(document, 'script', 'facebook-jssdk');
 
+  showEnterAppliances();
   allowOk();
   disableSubmission($("form button[type='submit']"));
   $("form input:first").focus();
