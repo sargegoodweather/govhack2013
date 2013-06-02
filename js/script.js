@@ -205,6 +205,7 @@ $(function() {
 
   $("#share").click(function() {
     var ret = makePostInformation();
+	console.log(ret);
     FB.ui({
       method: 'feed',
       link: 'stormy-beyond-1782.herokuapp.com/',
