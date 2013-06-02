@@ -201,6 +201,9 @@ $(function() {
     var appliances = $(list).find("li");
     var total = 0;
     appliances.each(function(i, el) {
+			console.log($(el));
+			console.log($(el).data("Star"));
+			console.log('\n');
       total = total + $(el).data("Star");
     });
     return total / appliances.length;
